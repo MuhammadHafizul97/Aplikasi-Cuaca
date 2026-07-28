@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Skyfeel — Weather App</title>
+
+    <!-- Google Font: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- File CSS utama (sejajar / flat dengan index.html) -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Elemen ini dipakai JavaScript untuk mengganti gradasi latar
+       sesuai kondisi cuaca (cerah, hujan, berawan, malam, dsb) -->
+    <div class="weather-bg" id="weatherBg">
+      <div class="bg-particles" id="bgParticles"></div>
+    </div>
+
+    <div class="app-container">
+      <header class="top-bar">
+        <div class="brand">
+          <span class="brand-icon">☁️</span>
+          <span class="brand-name">Skyfeel</span>
+        </div>
+
+        <div class="top-actions">
+          <!-- Jam & tanggal real-time -->
+          <div class="live-clock" id="liveClock">--:--:--</div>
+
+          <!-- Toggle satuan suhu Celsius / Fahrenheit -->
+          <button class="pill-btn" id="unitToggle" title="Ganti satuan suhu">
+            °C
+          </button>
+
+          <!-- Toggle dark mode / light mode -->
+          <button class="icon-btn" id="themeToggle" title="Ganti tema">
+            🌙
+          </button>
+        </div>
+      </header>
+
+      <section class="search-section">
+        <div class="search-box">
+          <input
+            type="text"
+            id="cityInput"
+            class="search-input"
+            placeholder="Cari nama kota"
+            autocomplete="off"
+          />
+          <button class="search-btn" id="searchBtn" title="Cari cuaca">
+            <span>🔍</span>
+          </button>
+          <button class="locate-btn" id="locateBtn" title="Gunakan lokasi saya">
+            <span>📍</span>
+          </button>
+        </div>
+
+        <div class="history-row" id="historyRow"></div>
+      </section>
+
+      <div class="loading-box hidden" id="loadingBox">
+        <div class="spinner"></div>
+        <p>Mengambil data cuaca...</p>
+      </div>
+
+      <div class="error-box hidden" id="errorBox">
+        <span class="error-icon">⚠️</span>
+        <p class="error-text" id="errorText">Terjadi kesalahan.</p>
+      </div>
+
+      <main class="weather-card hidden" id="weatherCard">
+        <!-- Info lokasi & tombol favorit -->
+        <div class="card-top">
+          <div class="location-info">
+            <h1 class="city-name" id="cityName">-</h1>
+            <p class="country-name" id="countryName">-</p>
+            <p class="update-time" id="updateTime">Update: -</p>
+          </div>
+          <button class="fav-btn" id="favBtn" title="Simpan sebagai favorit">
+            ☆
+          </button>
+        </div>
+
+        <div class="main-display">
+          <img src="" alt="Ikon cuaca" class="weather-icon" id="weatherIcon" />
+          <div class="temp-block">
+            <h2 class="temperature" id="temperature">-°</h2>
+            <p class="condition" id="condition">-</p>
+            <p class="feels-like" id="feelsLike">Terasa seperti: -°</p>
+          </div>
+        </div>
+
+        <div class="details-grid">
+          <div class="detail-item">
+            <span class="detail-icon">💧</span>
+            <span class="detail-label">Kelembapan</span>
+            <span class="detail-value" id="humidity">-%</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-icon">💨</span>
+            <span class="detail-label">Angin</span>
+            <span class="detail-value" id="windSpeed">- m/s</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-icon">🧭</span>
+            <span class="detail-label">Tekanan</span>
+            <span class="detail-value" id="pressure">- hPa</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-icon">👁️</span>
+            <span class="detail-label">Jarak Pandang</span>
+            <span class="detail-value" id="visibility">- km</span>
+          </div>
+        </div>
+
+        <div class="sun-row">
+          <div class="sun-item">
+            <span class="detail-icon">🌅</span>
+            <span class="detail-label">Matahari Terbit</span>
+            <span class="detail-value" id="sunrise">-</span>
+          </div>
+          <div class="sun-item">
+            <span class="detail-icon">🌇</span>
+            <span class="detail-label">Matahari Terbenam</span>
+            <span class="detail-value" id="sunset">-</span>
+          </div>
+        </div>
+
+        <div class="forecast-section">
+          <h3 class="forecast-title">Perkiraan 5 Hari</h3>
+          <div class="forecast-row" id="forecastRow">
+            <!-- Kartu forecast harian akan ditambahkan lewat JavaScript -->
+          </div>
+        </div>
+      </main>
+
+      <div class="empty-state" id="emptyState">
+        <span class="empty-icon">🌤️</span>
+        <p>Cari nama kota untuk melihat informasi cuaca terkini.</p>
+      </div>
+
+      <footer class="app-footer">
+        <p>
+          Dibuat untuk tugas Dasar Pemrograman Web &middot; Data oleh
+          OpenWeatherMap
+        </p>
+      </footer>
+    </div>
+
+    <!-- File JS utama (sejajar / flat dengan index.html, dimuat sebelum </body>) -->
+    <script src="index.js"></script>
+  </body>
+</html>
